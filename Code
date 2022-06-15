@@ -1,0 +1,43 @@
+from visual import *
+#######Huzaifa Jawad#######
+scene=canvas(background=color.black)
+origin = sphere(color=color.white,radius=2)
+#-------------- set your axes
+x_ax = curve(pos=[vector(-70,0,0),vector(70,0,0)],color=color.red)
+y_ax = curve(pos=[vector(0,-70,0),vector(0,70,0)],color=color.green)
+#---------------creating objects
+obj=sphere(radius=5, pos=vector(50,0,0),color=color.orange, make_trail=True)
+#Variables
+t=0
+td=0.1
+r=50
+omega=3 #considering it on my own
+#instantaneuos velocity
+vx = 50*omega*(-1)*sin(omega*t)
+vy = 50*omega*cos(omega*t)
+vel=arrow(pos=obj.pos,axis=vector(vx,vy,0),color=color.blue,opacity=0.5,)
+delvel=vector(0,0,0)
+#instantaneuos acceleration
+ax =-cos(omega*t)
+ay=-sin(omega*t)
+acc = arrow(pos=obj.pos,axis=vector(ax,ay,0),color=color.green,opacity=0.5)
+delacc=vector(0,0,0)
+#Itteration
+while t<31:
+ rate(10)
+ x=(50*(cos(omega*t)))
+ y=(50*(sin(omega*t)))
+ obj.pos=vector(x,y,0)
+ vx =20*(-1)*sin(omega*t)#WE only want the direction magnitude can vary
+ vy =20*cos(omega*t)#WE only want the direction magnitude can vary
+ vel.axis=vector(vx,vy,0)
+ vel.pos=vector(x,y,0)
+ ax =-15*cos(omega*t)#WE only want the direction magnitude can vary
+ ay=-15*sin(omega*t)#WE only want the direction magnitude can vary
+ acc.axis=vector(ax,ay,0)
+ acc.pos=vector(x,y,0)
+ t=t+td
+ print("finial position = ",obj.pos)
+ print("finial velocity = ", vel.axis)
+ print("acceleration = ", acc.axis)
+ print("time elapsed = ", t
